@@ -1,5 +1,6 @@
+# app/main.py
 from fastapi import FastAPI
-from app.api import auth
+from app.api.auth_routes import router
 
 app = FastAPI()
 
@@ -7,5 +8,4 @@ app = FastAPI()
 def root():
     return {"message": "StackUp backend is running"}
 
-# Include auth routes
-app.include_router(auth.router)
+app.include_router(router)
