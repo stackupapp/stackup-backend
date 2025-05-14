@@ -1,4 +1,3 @@
-# main.py (root-level)
 import uvicorn
 
 if __name__ == "__main__":
