@@ -1,31 +1,10 @@
 entrypoint = "main.py"
-modules = ["python-3.11"]
 
-[nix]
-channel = "stable-24_05"
-packages = ["psmisc"]
-
-[unitTest]
-language = "python3"
-
-[gitHubImport]
-requiredFiles = [".replit", "replit.nix"]
-
-[deployment]
-run = ["python3", "main.py"]
-deploymentTarget = "cloudrun"
-
-[[ports]]
-localPort = 8000
-externalPort = 80
-
-entrypoint = "app/main.py"
+[interpreter]
+command = ["python", "-u"]
 
 [env]
 PORT = "8000"
 
-[interpreter]
-command = ["python3", "-u"]
-
 [run]
-command = "uvicorn app.main:app --host=0.0.0.0 --port=8000 --reload"
+command = "python main.py"
