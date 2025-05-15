@@ -17,6 +17,15 @@ platform_config = {
             "current_price": "Mark"
         }
     },
+    "Wealthwise": {
+        "identifier": "OpenDate",  # Unique header to help detect
+        "columns": {
+            "symbol": "SymbolName",
+            "quantity": "QuantityHeld",
+            "buy_price": "EntryPrice",
+            "current_price": "MarketEstimate"
+        }
+    },
     "IBKR": {
         "identifier": "Symbol",
         "columns": {

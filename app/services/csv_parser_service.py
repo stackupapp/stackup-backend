@@ -1,43 +1,62 @@
 # app/services/csv_parser_service.py
+
 import csv
 import io
-from typing import List, Dict
-from .platform_config import platform_config
 import difflib
+from typing import List, Dict
+from difflib import SequenceMatcher
 
-def detect_platform(headers: List[str]) -> str:
-    # Normalize headers to lower case and strip spaces
-    normalized_headers = [h.strip().lower() for h in headers if h]
+# Canonical header groups (no need for platform_config anymore)
+FIELD_ALIASES = {
+    "symbol": ["symbol", "ticker", "underlying symbol", "symbolname"],
+    "quantity": ["quantity", "qty", "shares", "quantityheld"],
+    "buy_price": ["buy", "entry", "cost basis", "average cost", "trade price", "t. price"],
+    "current_price": ["current", "mark", "market value", "marketestimate", "market price"]
+}
 
-    for broker, cfg in platform_config.items():
-        identifier = cfg["identifier"].strip().lower()
-        if identifier in normalized_headers:
-            return broker
+def fuzzy_header_mapping(headers: List[str]) -> Dict[str, str]:
+    """Map CSV headers to canonical field keys based on fuzzy match."""
+    mapped = {}
+    headers_lower = [h.lower() for h in headers]
 
-    raise ValueError("Unknown CSV format.")
+    for field_key, aliases in FIELD_ALIASES.items():
+        best_match = ""
+        best_score = 0
+        for alias in aliases:
+            for header in headers_lower:
+                score = SequenceMatcher(None, alias, header).ratio()
+                if score > best_score:
+                    best_score = score
+                    best_match = header
+        # Map back to original casing
+        for h in headers:
+            if h.lower() == best_match:
+                mapped[field_key] = h
+                break
+
+    return mapped
 
 def normalize_csv(file_bytes: bytes) -> List[Dict]:
+    """Parse a raw CSV and normalize trade data using fuzzy headers."""
     text = file_bytes.decode("utf-8", errors="ignore")
     reader = csv.DictReader(io.StringIO(text))
 
     if reader.fieldnames is None:
         raise ValueError("CSV file is missing headers.")
 
-    print(f"🔍 Detected headers: {reader.fieldnames}")
-    platform = detect_platform(list(reader.fieldnames or []))
+    headers = list(reader.fieldnames)
+    print(f"Detected headers: {headers}")
+
+    cols = fuzzy_header_mapping(headers)
+
+    # Ensure all required fields are present
+    required_keys = ["symbol", "quantity", "buy_price", "current_price"]
+    for key in required_keys:
+        if key not in cols:
+            raise ValueError(f"Couldn't map required column: {key}")
 
     normalized = []
     for i, row in enumerate(reader):
-        raw_cols = platform_config[platform]["columns"]
-        cols = {}
-
-        # Match platform_config keys to real CSV headers fuzzily
-        for key, expected_header in raw_cols.items():
-            best_match = difflib.get_close_matches(expected_header, reader.fieldnames or [], n=1, cutoff=0.6)
-            if best_match:
-                cols[key] = best_match[0]
-            else:
-                raise ValueError(f"Couldn't match column '{expected_header}' in {platform}")
         try:
             normalized.append({
                 "symbol": row[cols["symbol"]],
@@ -46,13 +65,14 @@ def normalize_csv(file_bytes: bytes) -> List[Dict]:
                 "current_price": float(row[cols["current_price"]]),
             })
         except Exception as e:
-            print(f"Skipping row {i+1} in {platform}: {e}")
+            print(f"Skipping row {i+1}: {e}")
             continue
 
-    print(f"Parsed {len(normalized)} valid rows from {platform}")
+    print(f"Parsed {len(normalized)} valid rows")
     return normalized
 
 def compute_summary(all_trades: List[Dict]) -> Dict:
+    """Compute portfolio metrics based on all trades."""
     total_invested = 0
     current_value = 0
     asset_map = {}
