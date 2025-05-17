@@ -1,0 +1,95 @@
+[
+  {
+    "timestamp": "2025-05-17T00:58:26.827964Z",
+    "total_invested": 29550.0,
+    "current_value": 10431.7,
+    "total_profit": -19118.3,
+    "per_stock_details": {
+      "GOOGL": {
+        "quantity": 5.0,
+        "buy_price": 2700.0,
+        "current_price": 166.19,
+        "current_value": 830.95
+      },
+      "AMZN": {
+        "quantity": 3.0,
+        "buy_price": 3300.0,
+        "current_price": 205.59,
+        "current_value": 616.77
+      },
+      "NFLX": {
+        "quantity": 7.0,
+        "buy_price": 550.0,
+        "current_price": 1191.53,
+        "current_value": 8340.71
+      },
+      "UBER": {
+        "quantity": 6.0,
+        "buy_price": 120.0,
+        "current_price": 91.79,
+        "current_value": 550.74
+      },
+      "LYFT": {
+        "quantity": 4.0,
+        "buy_price": 95.0,
+        "current_price": 16.77,
+        "current_value": 67.08
+      },
+      "GRAB": {
+        "quantity": 5.0,
+        "buy_price": 240.0,
+        "current_price": 5.09,
+        "current_value": 25.45
+      }
+    },
+    "asset_allocation": {
+      "GOOGL": 7.97,
+      "AMZN": 5.91,
+      "NFLX": 79.96,
+      "UBER": 5.28,
+      "LYFT": 0.64,
+      "GRAB": 0.24
+    }
+  },
+  {
+    "timestamp": "2025-05-17T03:49:42.066701Z",
+    "total_invested": 7250.0,
+    "current_value": 2271.35,
+    "total_profit": -4978.65,
+    "per_stock_details": {
+      "MSFT": {
+        "quantity": 5.0,
+        "buy_price": 1450.0,
+        "current_price": 454.27,
+        "current_value": 2271.35
+      }
+    },
+    "asset_allocation": {
+      "MSFT": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-17T04:38:07.803714Z",
+    "total_invested": 24750.0,
+    "current_value": 4383.95,
+    "total_profit": -20366.05,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 1750.0,
+        "current_price": 211.26,
+        "current_value": 2112.6
+      },
+      "MSFT": {
+        "quantity": 5.0,
+        "buy_price": 1450.0,
+        "current_price": 454.27,
+        "current_value": 2271.35
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 48.19,
+      "MSFT": 51.81
+    }
+  }
+]

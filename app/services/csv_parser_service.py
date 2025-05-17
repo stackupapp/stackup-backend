@@ -1,10 +1,11 @@
 # app/services/csv_parser_service.py
-
 import csv
 import io
 import difflib
 from typing import List, Dict
 from difflib import SequenceMatcher
+from .finnhub_service import get_realtime_price
+from app.services.finnhub_service import get_realtime_price
 
 # Canonical header groups (no need for platform_config anymore)
 FIELD_ALIASES = {
@@ -72,27 +73,47 @@ def normalize_csv(file_bytes: bytes) -> List[Dict]:
     return normalized
 
 def compute_summary(all_trades: List[Dict]) -> Dict:
-    """Compute portfolio metrics based on all trades."""
     total_invested = 0
     current_value = 0
     asset_map = {}
+    per_stock_details = {}
 
     for trade in all_trades:
-        invested = trade["quantity"] * trade["buy_price"]
-        current = trade["quantity"] * trade["current_price"]
         symbol = trade["symbol"]
+        quantity = trade["quantity"]
+        buy_price = trade["buy_price"]
+
+        try:
+            # Fetch real-time current price
+            current_price = get_realtime_price(symbol)
+        except Exception as e:
+            print(f"⚠️ Could not fetch price for {symbol}: {e}")
+            current_price = trade["current_price"]  # fallback to file value
+
+        invested = quantity * buy_price
+        current = quantity * current_price
 
         total_invested += invested
         current_value += current
         asset_map[symbol] = asset_map.get(symbol, 0) + current
 
+        # Store per-stock breakdown
+        per_stock_details[symbol] = {
+            "quantity": quantity,
+            "buy_price": buy_price,
+            "current_price": round(current_price, 2),
+            "current_value": round(current, 2),
+        }
+
     allocation = {
-        sym: round((val / current_value) * 100, 2) for sym, val in asset_map.items()
+        sym: round((val / current_value) * 100, 2)
+        for sym, val in asset_map.items()
     }
 
     return {
         "total_invested": round(total_invested, 2),
         "current_value": round(current_value, 2),
         "total_profit": round(current_value - total_invested, 2),
+        "per_stock_details": per_stock_details,
         "asset_allocation": allocation,
     }
