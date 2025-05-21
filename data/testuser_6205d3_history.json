@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-02T00:00:00Z",
+    "total_invested": 1200,
+    "current_value": 1150,
+    "total_profit": -50
+  }
+]

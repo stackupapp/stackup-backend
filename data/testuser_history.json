@@ -1,0 +1,274 @@
+[
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-02T00:00:00Z",
+    "total_invested": 1200,
+    "current_value": 1150,
+    "total_profit": -50
+  },
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-01T00:00:00Z",
+    "total_invested": 1000,
+    "current_value": 1100,
+    "total_profit": 100
+  },
+  {
+    "timestamp": "2024-01-02T00:00:00Z",
+    "total_invested": 1200,
+    "current_value": 1150,
+    "total_profit": -50
+  },
+  {
+    "timestamp": "2025-05-21T04:33:57.153371Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:35:42.672674Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:42:51.217689Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:45:46.575006Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:46:45.362281Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:48:01.102299Z",
+    "total_invested": 1500.0,
+    "current_value": 1550.0,
+    "total_profit": 50.0,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 155.0,
+        "current_value": 1550.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:51:29.343594Z",
+    "total_invested": 1500.0,
+    "current_value": 1550.0,
+    "total_profit": 50.0,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 155.0,
+        "current_value": 1550.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:51:29.469208Z",
+    "total_invested": 1500.0,
+    "current_value": 2068.6,
+    "total_profit": 568.6,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 206.86,
+        "current_value": 2068.6
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T04:51:29.502000Z",
+    "total_invested": 0,
+    "current_value": 0,
+    "total_profit": 0,
+    "per_stock_details": {},
+    "asset_allocation": {}
+  },
+  {
+    "timestamp": "2025-05-21T05:06:08.368776Z",
+    "total_invested": 1500.0,
+    "current_value": 1550.0,
+    "total_profit": 50.0,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 155.0,
+        "current_value": 1550.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T05:06:08.511756Z",
+    "total_invested": 0,
+    "current_value": 0,
+    "total_profit": 0,
+    "per_stock_details": {},
+    "asset_allocation": {}
+  },
+  {
+    "timestamp": "2025-05-21T05:13:48.012634Z",
+    "total_invested": 1500.0,
+    "current_value": 1550.0,
+    "total_profit": 50.0,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 155.0,
+        "current_value": 1550.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T05:13:48.292661Z",
+    "total_invested": 100.0,
+    "current_value": 0.0,
+    "total_profit": -100.0,
+    "per_stock_details": {
+      "10": {
+        "quantity": 10.0,
+        "buy_price": 10.0,
+        "current_price": 0,
+        "current_value": 0.0
+      }
+    },
+    "asset_allocation": {
+      "10": 0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T05:13:48.325386Z",
+    "total_invested": 0,
+    "current_value": 0,
+    "total_profit": 0,
+    "per_stock_details": {},
+    "asset_allocation": {}
+  },
+  {
+    "timestamp": "2025-05-21T05:53:14.990738Z",
+    "total_invested": 1500.0,
+    "current_value": 1550.0,
+    "total_profit": 50.0,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 150.0,
+        "current_price": 155.0,
+        "current_value": 1550.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 100.0
+    }
+  },
+  {
+    "timestamp": "2025-05-21T05:53:14.995821Z",
+    "total_invested": 0,
+    "current_value": 0,
+    "total_profit": 0,
+    "per_stock_details": {},
+    "asset_allocation": {}
+  }
+]

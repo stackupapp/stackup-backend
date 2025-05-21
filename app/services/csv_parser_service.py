@@ -1,24 +1,24 @@
 # app/services/csv_parser_service.py
 import csv
 import io
-import difflib
 from typing import List, Dict
 from difflib import SequenceMatcher
 from .finnhub_service import get_realtime_price
-from app.services.finnhub_service import get_realtime_price
 
 # Canonical header groups (no need for platform_config anymore)
 FIELD_ALIASES = {
     "symbol": ["symbol", "ticker", "underlying symbol", "symbolname"],
     "quantity": ["quantity", "qty", "shares", "quantityheld"],
-    "buy_price": ["buy", "entry", "cost basis", "average cost", "trade price", "t. price"],
-    "current_price": ["current", "mark", "market value", "marketestimate", "market price"]
+    "buy_price": ["buy", "entry", "cost basis", "average cost", "trade price", "t. price", "buy price"],
+    "current_price": ["current", "mark", "market value", "marketestimate", "market price", "current price"]  # ✅ add this
 }
 
 def fuzzy_header_mapping(headers: List[str]) -> Dict[str, str]:
     """Map CSV headers to canonical field keys based on fuzzy match."""
     mapped = {}
     headers_lower = [h.lower() for h in headers]
+
+    FUZZY_MATCH_THRESHOLD = 0.8  # Add this as a module-level constant if needed
 
     for field_key, aliases in FIELD_ALIASES.items():
         best_match = ""
@@ -29,11 +29,13 @@ def fuzzy_header_mapping(headers: List[str]) -> Dict[str, str]:
                 if score > best_score:
                     best_score = score
                     best_match = header
-        # Map back to original casing
-        for h in headers:
-            if h.lower() == best_match:
-                mapped[field_key] = h
-                break
+
+        # Only accept match if above threshold
+        if best_score >= FUZZY_MATCH_THRESHOLD:
+            for h in headers:
+                if h.lower() == best_match:
+                    mapped[field_key] = h
+                    break
 
     return mapped
 
@@ -106,7 +108,7 @@ def compute_summary(all_trades: List[Dict]) -> Dict:
         }
 
     allocation = {
-        sym: round((val / current_value) * 100, 2)
+        sym: round((val / current_value) * 100, 2) if current_value != 0 else 0
         for sym, val in asset_map.items()
     }
 
