@@ -6,4 +6,4 @@ requests
 pytest
 pytest-cov
 streamlit
-matplotlib
+matplotlib==3.7.1
