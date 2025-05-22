@@ -14,5 +14,9 @@ command = ["python3", "-u", "main.py"]
 localPort = 8000
 externalPort = 80
 
+[[ports]]
+localPort = 8501
+externalPort = 3000
+
 [nix]
-packages = ["docker-client"]
+packages = ["cairo", "docker-client", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "pkg-config", "qhull", "streamlit", "tcl", "tk"]

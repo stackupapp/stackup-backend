@@ -9,3 +9,4 @@ def root():
     return {"message": "StackUp backend is running"}
 
 app.include_router(router)
+
