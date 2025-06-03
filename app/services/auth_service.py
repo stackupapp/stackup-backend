@@ -3,6 +3,9 @@ from typing import Dict
 # app/services/auth_service.py
 from passlib.context import CryptContext
 
+# In-memory store (temporary)
+user_db = {}
+
 __all__ = ["hash_password", "verify_password"]
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -15,10 +18,13 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 user_store: Dict[str, str] = {}
 
 def signup_user(username: str, password: str) -> bool:
-    if username in user_store:
+    if username in user_db:
         return False
-    user_store[username] = password
+    hashed_password = pwd_context.hash(password)
+    user_db[username] = hashed_password
     return True
 
 def login_user(username: str, password: str) -> bool:
-    return user_store.get(username) == password
+    if username not in user_db:
+        return False
+    return pwd_context.verify(password, user_db[username])
