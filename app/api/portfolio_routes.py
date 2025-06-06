@@ -6,14 +6,20 @@ from app.services.csv_parser_service import normalize_csv, compute_summary
 from app.services.history_service import save_portfolio_snapshot, get_portfolio_history
 from app.services.history_service import get_portfolio_trends
 from app.models.history import HistoryResponse
+from fastapi import Depends
+from app.utils.dependencies import get_current_user
 
 router = APIRouter()
 
-@router.post("/portfolio/upload", response_model=PortfolioSummary)
+@router.post("/portfolio/upload", response_model=PortfolioSummary,
+             openapi_extra={"security": [{"BearerAuth": []}]})
 async def upload_portfolio(
     files: List[UploadFile] = File(...),
-    username: str = Query(..., description="Username for saving portfolio history")
+    username: str = Query(..., description="Username for saving snapshot"),
+    current_user: str = Depends(get_current_user)
 ):
+    print(f"✅ Authenticated upload request from: {current_user}")
+    
     all_trades = []
 
     for file in files:

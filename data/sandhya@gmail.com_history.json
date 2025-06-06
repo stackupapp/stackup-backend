@@ -1,0 +1,40 @@
+[
+  {
+    "timestamp": "2025-06-06T19:00:58.559244Z",
+    "total_invested": 72055.0,
+    "current_value": 74082.5,
+    "total_profit": 2027.5,
+    "per_stock_details": {
+      "AAPL": {
+        "quantity": 10.0,
+        "buy_price": 1750.0,
+        "current_price": 1805.0,
+        "current_value": 18050.0
+      },
+      "MSFT": {
+        "quantity": 5.0,
+        "buy_price": 310.0,
+        "current_price": 315.0,
+        "current_value": 1575.0
+      },
+      "TSLA": {
+        "quantity": 5.0,
+        "buy_price": 4600.0,
+        "current_price": 4751.5,
+        "current_value": 23757.5
+      },
+      "AMZN": {
+        "quantity": 3.0,
+        "buy_price": 9400.0,
+        "current_price": 9600.0,
+        "current_value": 28800.0
+      }
+    },
+    "asset_allocation": {
+      "AAPL": 26.93,
+      "MSFT": 2.13,
+      "TSLA": 32.07,
+      "AMZN": 38.88
+    }
+  }
+]

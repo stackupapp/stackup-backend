@@ -1,20 +1,20 @@
-# app/api/auth.py
 from fastapi import APIRouter, HTTPException
-from app.models.user import SignUpRequest, LoginRequest, AuthResponse
-from app.services.auth_service import signup_user, login_user
+from app.models.user import UserSignup, UserLogin, TokenResponse
+from app.services.auth_service import signup_user, authenticate_user
+from app.utils.jwt_handler import create_access_token
 
-router = APIRouter()
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
-@router.post("/signup", response_model=AuthResponse)
-def signup(payload: SignUpRequest):
-    success = signup_user(payload.username, payload.password)
+@router.post("/signup")
+def signup(user: UserSignup):
+    success, message = signup_user(user.email, user.password)
     if not success:
-        raise HTTPException(status_code=400, detail="Username already exists")
-    return {"message": "User signed up successfully"}
+        raise HTTPException(status_code=400, detail=message)
+    return {"msg": message}
 
-@router.post("/login", response_model=AuthResponse)
-def login(payload: LoginRequest):
-    success = login_user(payload.username, payload.password)
-    if not success:
+@router.post("/login", response_model=TokenResponse)
+def login(user: UserLogin):
+    if not authenticate_user(user.email, user.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
-    return {"message": "Login successful"}
+    token = create_access_token({"sub": user.email})
+    return {"access_token": token}
